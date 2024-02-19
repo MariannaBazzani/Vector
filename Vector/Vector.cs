@@ -20,7 +20,16 @@ namespace Vector
         {
             return Math.Sqrt(Math.Pow(this.X, 2) + Math.Pow(this.Y, 2));
         }
-        
+        public override string ToString()
+        {
+            return string.Format($"{0}, {1}", X, Y);
+        }
+        public static Vector Parse(string str)
+        {
+            string[] componenti = str.Split(',');
+            return new Vector(double.Parse(componenti[0]), double.Parse(componenti[1]));
+        }
+
         public static Vector operator +(Vector v1, Vector v2)
         {
             return new Vector(v1.X + v2.X, v1.Y + v2.Y);
