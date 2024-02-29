@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -76,6 +77,11 @@ namespace Vector
         public static bool operator !=(Vector v1, Vector v2)
         {
             return !Equals(v1, v2);
+        }
+
+        public Vector Versore()
+        {
+            return this / Modulo();
         }
     }
 }
