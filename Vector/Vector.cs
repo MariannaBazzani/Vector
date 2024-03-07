@@ -31,6 +31,19 @@ namespace Vector
             return new Vector(double.Parse(componenti[0]), double.Parse(componenti[1]));
         }
 
+        public bool TryParse(string str)
+        {
+            string[] fattori = str.Split(',');
+            if (double.TryParse(fattori[0], out double x) && double.TryParse(fattori[1], out double y))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static Vector operator +(Vector v1, Vector v2)
         {
             return new Vector(v1.X + v2.X, v1.Y + v2.Y);
@@ -60,19 +73,14 @@ namespace Vector
             return new Vector(-v1.X, -v1.Y);
         }
 
-        public override bool Equals(object obj)
-        {
-            if(ReferenceEquals(null, obj))
-                return false;
-            if(ReferenceEquals(this, obj)) 
-                return true;
-            if(obj.GetType() != this.GetType()) 
-                return false;
-            return Equals((Vector)obj);
-        }
         public static bool operator ==(Vector v1, Vector v2)
         {
-            return Equals(v1, v2);
+            if (ReferenceEquals(v1, null))
+                return object.ReferenceEquals(v2, null);
+            else if (ReferenceEquals(v2, null))
+                return false;
+            else 
+                return v1.X == v2.X && v1.Y == v2.Y;
         }
         public static bool operator !=(Vector v1, Vector v2)
         {
@@ -81,7 +89,7 @@ namespace Vector
 
         public Vector Versore()
         {
-            return this / Modulo();
+            return this / this.Modulo();
         }
     }
 }
